@@ -1,0 +1,1413 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> LPAREN PLUS expression expression RPAREN
+Rule 2     expression -> LPAREN MINUS expression expression RPAREN
+Rule 3     expression -> LPAREN TIMES expression expression RPAREN
+Rule 4     expression -> LPAREN DIVIDE expression expression RPAREN
+Rule 5     expression -> LPAREN CDR pair RPAREN
+Rule 6     expression -> LPAREN CDR quote RPAREN
+Rule 7     expression -> LPAREN COND condition RPAREN
+Rule 8     expression -> LPAREN CAR pair RPAREN
+Rule 9     expression -> LPAREN CAR quote RPAREN
+Rule 10    expression -> LPAREN EQ_Q expression expression RPAREN
+Rule 11    expression -> LPAREN ATOM_Q expression RPAREN
+Rule 12    quote -> LPAREN QUOTE quote_items RPAREN
+Rule 13    quote_items -> expression quote_items
+Rule 14    quote_items -> expression
+Rule 15    expression -> quote
+Rule 16    expression -> pair
+Rule 17    pair -> LPAREN CONS expression expression RPAREN
+Rule 18    expression -> LPAREN DEFINE NAME expression RPAREN
+Rule 19    expression -> LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+Rule 20    condition -> LPAREN LPAREN expression expression RPAREN RPAREN
+Rule 21    condition -> LPAREN expression expression condition RPAREN
+Rule 22    args -> args NAME
+Rule 23    args -> NAME
+Rule 24    expression -> item
+Rule 25    item -> NUMBER
+Rule 26    item -> NAME
+Rule 27    item -> NIL
+
+Terminals, with rules where they appear
+
+ATOM_Q               : 11
+CAR                  : 8 9
+CDR                  : 5 6
+COND                 : 7
+CONS                 : 17
+DEFINE               : 18
+DIVIDE               : 4
+EQ_Q                 : 10
+LAMBDA               : 19
+LPAREN               : 1 2 3 4 5 6 7 8 9 10 11 12 17 18 19 19 20 20 21
+MINUS                : 2
+NAME                 : 18 22 23 26
+NIL                  : 27
+NUMBER               : 25
+PLUS                 : 1
+QUOTE                : 12
+RPAREN               : 1 2 3 4 5 6 7 8 9 10 11 12 17 18 19 19 20 20 21
+TIMES                : 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+args                 : 19 22
+condition            : 7 21
+expression           : 1 1 2 2 3 3 4 4 10 10 11 13 14 17 17 18 19 20 20 21 21 0
+item                 : 24
+pair                 : 5 8 16
+quote                : 6 9 15
+quote_items          : 12 13
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 1
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 1
+
+    (0) S' -> expression .
+
+
+
+state 2
+
+    (1) expression -> LPAREN . PLUS expression expression RPAREN
+    (2) expression -> LPAREN . MINUS expression expression RPAREN
+    (3) expression -> LPAREN . TIMES expression expression RPAREN
+    (4) expression -> LPAREN . DIVIDE expression expression RPAREN
+    (5) expression -> LPAREN . CDR pair RPAREN
+    (6) expression -> LPAREN . CDR quote RPAREN
+    (7) expression -> LPAREN . COND condition RPAREN
+    (8) expression -> LPAREN . CAR pair RPAREN
+    (9) expression -> LPAREN . CAR quote RPAREN
+    (10) expression -> LPAREN . EQ_Q expression expression RPAREN
+    (11) expression -> LPAREN . ATOM_Q expression RPAREN
+    (18) expression -> LPAREN . DEFINE NAME expression RPAREN
+    (19) expression -> LPAREN . LAMBDA LPAREN args RPAREN expression RPAREN
+    (12) quote -> LPAREN . QUOTE quote_items RPAREN
+    (17) pair -> LPAREN . CONS expression expression RPAREN
+
+    PLUS            shift and go to state 9
+    MINUS           shift and go to state 10
+    TIMES           shift and go to state 11
+    DIVIDE          shift and go to state 12
+    CDR             shift and go to state 13
+    COND            shift and go to state 14
+    CAR             shift and go to state 15
+    EQ_Q            shift and go to state 16
+    ATOM_Q          shift and go to state 17
+    DEFINE          shift and go to state 18
+    LAMBDA          shift and go to state 19
+    QUOTE           shift and go to state 20
+    CONS            shift and go to state 21
+
+
+state 3
+
+    (16) expression -> pair .
+
+    $end            reduce using rule 16 (expression -> pair .)
+    LPAREN          reduce using rule 16 (expression -> pair .)
+    NUMBER          reduce using rule 16 (expression -> pair .)
+    NAME            reduce using rule 16 (expression -> pair .)
+    NIL             reduce using rule 16 (expression -> pair .)
+    RPAREN          reduce using rule 16 (expression -> pair .)
+
+
+state 4
+
+    (15) expression -> quote .
+
+    $end            reduce using rule 15 (expression -> quote .)
+    LPAREN          reduce using rule 15 (expression -> quote .)
+    NUMBER          reduce using rule 15 (expression -> quote .)
+    NAME            reduce using rule 15 (expression -> quote .)
+    NIL             reduce using rule 15 (expression -> quote .)
+    RPAREN          reduce using rule 15 (expression -> quote .)
+
+
+state 5
+
+    (26) item -> NAME .
+
+    $end            reduce using rule 26 (item -> NAME .)
+    LPAREN          reduce using rule 26 (item -> NAME .)
+    NUMBER          reduce using rule 26 (item -> NAME .)
+    NAME            reduce using rule 26 (item -> NAME .)
+    NIL             reduce using rule 26 (item -> NAME .)
+    RPAREN          reduce using rule 26 (item -> NAME .)
+
+
+state 6
+
+    (24) expression -> item .
+
+    $end            reduce using rule 24 (expression -> item .)
+    LPAREN          reduce using rule 24 (expression -> item .)
+    NUMBER          reduce using rule 24 (expression -> item .)
+    NAME            reduce using rule 24 (expression -> item .)
+    NIL             reduce using rule 24 (expression -> item .)
+    RPAREN          reduce using rule 24 (expression -> item .)
+
+
+state 7
+
+    (25) item -> NUMBER .
+
+    $end            reduce using rule 25 (item -> NUMBER .)
+    LPAREN          reduce using rule 25 (item -> NUMBER .)
+    NUMBER          reduce using rule 25 (item -> NUMBER .)
+    NAME            reduce using rule 25 (item -> NUMBER .)
+    NIL             reduce using rule 25 (item -> NUMBER .)
+    RPAREN          reduce using rule 25 (item -> NUMBER .)
+
+
+state 8
+
+    (27) item -> NIL .
+
+    $end            reduce using rule 27 (item -> NIL .)
+    LPAREN          reduce using rule 27 (item -> NIL .)
+    NUMBER          reduce using rule 27 (item -> NIL .)
+    NAME            reduce using rule 27 (item -> NIL .)
+    NIL             reduce using rule 27 (item -> NIL .)
+    RPAREN          reduce using rule 27 (item -> NIL .)
+
+
+state 9
+
+    (1) expression -> LPAREN PLUS . expression expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 22
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 10
+
+    (2) expression -> LPAREN MINUS . expression expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 23
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 11
+
+    (3) expression -> LPAREN TIMES . expression expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 24
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 12
+
+    (4) expression -> LPAREN DIVIDE . expression expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 25
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 13
+
+    (5) expression -> LPAREN CDR . pair RPAREN
+    (6) expression -> LPAREN CDR . quote RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+
+    LPAREN          shift and go to state 26
+
+    pair                           shift and go to state 27
+    quote                          shift and go to state 28
+
+state 14
+
+    (7) expression -> LPAREN COND . condition RPAREN
+    (20) condition -> . LPAREN LPAREN expression expression RPAREN RPAREN
+    (21) condition -> . LPAREN expression expression condition RPAREN
+
+    LPAREN          shift and go to state 29
+
+    condition                      shift and go to state 30
+
+state 15
+
+    (8) expression -> LPAREN CAR . pair RPAREN
+    (9) expression -> LPAREN CAR . quote RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+
+    LPAREN          shift and go to state 26
+
+    pair                           shift and go to state 31
+    quote                          shift and go to state 32
+
+state 16
+
+    (10) expression -> LPAREN EQ_Q . expression expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 33
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 17
+
+    (11) expression -> LPAREN ATOM_Q . expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 34
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 18
+
+    (18) expression -> LPAREN DEFINE . NAME expression RPAREN
+
+    NAME            shift and go to state 35
+
+
+state 19
+
+    (19) expression -> LPAREN LAMBDA . LPAREN args RPAREN expression RPAREN
+
+    LPAREN          shift and go to state 36
+
+
+state 20
+
+    (12) quote -> LPAREN QUOTE . quote_items RPAREN
+    (13) quote_items -> . expression quote_items
+    (14) quote_items -> . expression
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    quote_items                    shift and go to state 37
+    expression                     shift and go to state 38
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 21
+
+    (17) pair -> LPAREN CONS . expression expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 39
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 22
+
+    (1) expression -> LPAREN PLUS expression . expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 40
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 23
+
+    (2) expression -> LPAREN MINUS expression . expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 41
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 24
+
+    (3) expression -> LPAREN TIMES expression . expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 42
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 25
+
+    (4) expression -> LPAREN DIVIDE expression . expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 43
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 26
+
+    (17) pair -> LPAREN . CONS expression expression RPAREN
+    (12) quote -> LPAREN . QUOTE quote_items RPAREN
+
+    CONS            shift and go to state 21
+    QUOTE           shift and go to state 20
+
+
+state 27
+
+    (5) expression -> LPAREN CDR pair . RPAREN
+
+    RPAREN          shift and go to state 44
+
+
+state 28
+
+    (6) expression -> LPAREN CDR quote . RPAREN
+
+    RPAREN          shift and go to state 45
+
+
+state 29
+
+    (20) condition -> LPAREN . LPAREN expression expression RPAREN RPAREN
+    (21) condition -> LPAREN . expression expression condition RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 46
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 47
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 30
+
+    (7) expression -> LPAREN COND condition . RPAREN
+
+    RPAREN          shift and go to state 48
+
+
+state 31
+
+    (8) expression -> LPAREN CAR pair . RPAREN
+
+    RPAREN          shift and go to state 49
+
+
+state 32
+
+    (9) expression -> LPAREN CAR quote . RPAREN
+
+    RPAREN          shift and go to state 50
+
+
+state 33
+
+    (10) expression -> LPAREN EQ_Q expression . expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 51
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 34
+
+    (11) expression -> LPAREN ATOM_Q expression . RPAREN
+
+    RPAREN          shift and go to state 52
+
+
+state 35
+
+    (18) expression -> LPAREN DEFINE NAME . expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 53
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 36
+
+    (19) expression -> LPAREN LAMBDA LPAREN . args RPAREN expression RPAREN
+    (22) args -> . args NAME
+    (23) args -> . NAME
+
+    NAME            shift and go to state 55
+
+    args                           shift and go to state 54
+
+state 37
+
+    (12) quote -> LPAREN QUOTE quote_items . RPAREN
+
+    RPAREN          shift and go to state 56
+
+
+state 38
+
+    (13) quote_items -> expression . quote_items
+    (14) quote_items -> expression .
+    (13) quote_items -> . expression quote_items
+    (14) quote_items -> . expression
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    RPAREN          reduce using rule 14 (quote_items -> expression .)
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 38
+    quote_items                    shift and go to state 57
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 39
+
+    (17) pair -> LPAREN CONS expression . expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 58
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 40
+
+    (1) expression -> LPAREN PLUS expression expression . RPAREN
+
+    RPAREN          shift and go to state 59
+
+
+state 41
+
+    (2) expression -> LPAREN MINUS expression expression . RPAREN
+
+    RPAREN          shift and go to state 60
+
+
+state 42
+
+    (3) expression -> LPAREN TIMES expression expression . RPAREN
+
+    RPAREN          shift and go to state 61
+
+
+state 43
+
+    (4) expression -> LPAREN DIVIDE expression expression . RPAREN
+
+    RPAREN          shift and go to state 62
+
+
+state 44
+
+    (5) expression -> LPAREN CDR pair RPAREN .
+
+    $end            reduce using rule 5 (expression -> LPAREN CDR pair RPAREN .)
+    LPAREN          reduce using rule 5 (expression -> LPAREN CDR pair RPAREN .)
+    NUMBER          reduce using rule 5 (expression -> LPAREN CDR pair RPAREN .)
+    NAME            reduce using rule 5 (expression -> LPAREN CDR pair RPAREN .)
+    NIL             reduce using rule 5 (expression -> LPAREN CDR pair RPAREN .)
+    RPAREN          reduce using rule 5 (expression -> LPAREN CDR pair RPAREN .)
+
+
+state 45
+
+    (6) expression -> LPAREN CDR quote RPAREN .
+
+    $end            reduce using rule 6 (expression -> LPAREN CDR quote RPAREN .)
+    LPAREN          reduce using rule 6 (expression -> LPAREN CDR quote RPAREN .)
+    NUMBER          reduce using rule 6 (expression -> LPAREN CDR quote RPAREN .)
+    NAME            reduce using rule 6 (expression -> LPAREN CDR quote RPAREN .)
+    NIL             reduce using rule 6 (expression -> LPAREN CDR quote RPAREN .)
+    RPAREN          reduce using rule 6 (expression -> LPAREN CDR quote RPAREN .)
+
+
+state 46
+
+    (20) condition -> LPAREN LPAREN . expression expression RPAREN RPAREN
+    (1) expression -> LPAREN . PLUS expression expression RPAREN
+    (2) expression -> LPAREN . MINUS expression expression RPAREN
+    (3) expression -> LPAREN . TIMES expression expression RPAREN
+    (4) expression -> LPAREN . DIVIDE expression expression RPAREN
+    (5) expression -> LPAREN . CDR pair RPAREN
+    (6) expression -> LPAREN . CDR quote RPAREN
+    (7) expression -> LPAREN . COND condition RPAREN
+    (8) expression -> LPAREN . CAR pair RPAREN
+    (9) expression -> LPAREN . CAR quote RPAREN
+    (10) expression -> LPAREN . EQ_Q expression expression RPAREN
+    (11) expression -> LPAREN . ATOM_Q expression RPAREN
+    (18) expression -> LPAREN . DEFINE NAME expression RPAREN
+    (19) expression -> LPAREN . LAMBDA LPAREN args RPAREN expression RPAREN
+    (12) quote -> LPAREN . QUOTE quote_items RPAREN
+    (17) pair -> LPAREN . CONS expression expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    PLUS            shift and go to state 9
+    MINUS           shift and go to state 10
+    TIMES           shift and go to state 11
+    DIVIDE          shift and go to state 12
+    CDR             shift and go to state 13
+    COND            shift and go to state 14
+    CAR             shift and go to state 15
+    EQ_Q            shift and go to state 16
+    ATOM_Q          shift and go to state 17
+    DEFINE          shift and go to state 18
+    LAMBDA          shift and go to state 19
+    QUOTE           shift and go to state 20
+    CONS            shift and go to state 21
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 63
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 47
+
+    (21) condition -> LPAREN expression . expression condition RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 64
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 48
+
+    (7) expression -> LPAREN COND condition RPAREN .
+
+    $end            reduce using rule 7 (expression -> LPAREN COND condition RPAREN .)
+    LPAREN          reduce using rule 7 (expression -> LPAREN COND condition RPAREN .)
+    NUMBER          reduce using rule 7 (expression -> LPAREN COND condition RPAREN .)
+    NAME            reduce using rule 7 (expression -> LPAREN COND condition RPAREN .)
+    NIL             reduce using rule 7 (expression -> LPAREN COND condition RPAREN .)
+    RPAREN          reduce using rule 7 (expression -> LPAREN COND condition RPAREN .)
+
+
+state 49
+
+    (8) expression -> LPAREN CAR pair RPAREN .
+
+    $end            reduce using rule 8 (expression -> LPAREN CAR pair RPAREN .)
+    LPAREN          reduce using rule 8 (expression -> LPAREN CAR pair RPAREN .)
+    NUMBER          reduce using rule 8 (expression -> LPAREN CAR pair RPAREN .)
+    NAME            reduce using rule 8 (expression -> LPAREN CAR pair RPAREN .)
+    NIL             reduce using rule 8 (expression -> LPAREN CAR pair RPAREN .)
+    RPAREN          reduce using rule 8 (expression -> LPAREN CAR pair RPAREN .)
+
+
+state 50
+
+    (9) expression -> LPAREN CAR quote RPAREN .
+
+    $end            reduce using rule 9 (expression -> LPAREN CAR quote RPAREN .)
+    LPAREN          reduce using rule 9 (expression -> LPAREN CAR quote RPAREN .)
+    NUMBER          reduce using rule 9 (expression -> LPAREN CAR quote RPAREN .)
+    NAME            reduce using rule 9 (expression -> LPAREN CAR quote RPAREN .)
+    NIL             reduce using rule 9 (expression -> LPAREN CAR quote RPAREN .)
+    RPAREN          reduce using rule 9 (expression -> LPAREN CAR quote RPAREN .)
+
+
+state 51
+
+    (10) expression -> LPAREN EQ_Q expression expression . RPAREN
+
+    RPAREN          shift and go to state 65
+
+
+state 52
+
+    (11) expression -> LPAREN ATOM_Q expression RPAREN .
+
+    $end            reduce using rule 11 (expression -> LPAREN ATOM_Q expression RPAREN .)
+    LPAREN          reduce using rule 11 (expression -> LPAREN ATOM_Q expression RPAREN .)
+    NUMBER          reduce using rule 11 (expression -> LPAREN ATOM_Q expression RPAREN .)
+    NAME            reduce using rule 11 (expression -> LPAREN ATOM_Q expression RPAREN .)
+    NIL             reduce using rule 11 (expression -> LPAREN ATOM_Q expression RPAREN .)
+    RPAREN          reduce using rule 11 (expression -> LPAREN ATOM_Q expression RPAREN .)
+
+
+state 53
+
+    (18) expression -> LPAREN DEFINE NAME expression . RPAREN
+
+    RPAREN          shift and go to state 66
+
+
+state 54
+
+    (19) expression -> LPAREN LAMBDA LPAREN args . RPAREN expression RPAREN
+    (22) args -> args . NAME
+
+    RPAREN          shift and go to state 67
+    NAME            shift and go to state 68
+
+
+state 55
+
+    (23) args -> NAME .
+
+    RPAREN          reduce using rule 23 (args -> NAME .)
+    NAME            reduce using rule 23 (args -> NAME .)
+
+
+state 56
+
+    (12) quote -> LPAREN QUOTE quote_items RPAREN .
+
+    $end            reduce using rule 12 (quote -> LPAREN QUOTE quote_items RPAREN .)
+    LPAREN          reduce using rule 12 (quote -> LPAREN QUOTE quote_items RPAREN .)
+    NUMBER          reduce using rule 12 (quote -> LPAREN QUOTE quote_items RPAREN .)
+    NAME            reduce using rule 12 (quote -> LPAREN QUOTE quote_items RPAREN .)
+    NIL             reduce using rule 12 (quote -> LPAREN QUOTE quote_items RPAREN .)
+    RPAREN          reduce using rule 12 (quote -> LPAREN QUOTE quote_items RPAREN .)
+
+
+state 57
+
+    (13) quote_items -> expression quote_items .
+
+    RPAREN          reduce using rule 13 (quote_items -> expression quote_items .)
+
+
+state 58
+
+    (17) pair -> LPAREN CONS expression expression . RPAREN
+
+    RPAREN          shift and go to state 69
+
+
+state 59
+
+    (1) expression -> LPAREN PLUS expression expression RPAREN .
+
+    $end            reduce using rule 1 (expression -> LPAREN PLUS expression expression RPAREN .)
+    LPAREN          reduce using rule 1 (expression -> LPAREN PLUS expression expression RPAREN .)
+    NUMBER          reduce using rule 1 (expression -> LPAREN PLUS expression expression RPAREN .)
+    NAME            reduce using rule 1 (expression -> LPAREN PLUS expression expression RPAREN .)
+    NIL             reduce using rule 1 (expression -> LPAREN PLUS expression expression RPAREN .)
+    RPAREN          reduce using rule 1 (expression -> LPAREN PLUS expression expression RPAREN .)
+
+
+state 60
+
+    (2) expression -> LPAREN MINUS expression expression RPAREN .
+
+    $end            reduce using rule 2 (expression -> LPAREN MINUS expression expression RPAREN .)
+    LPAREN          reduce using rule 2 (expression -> LPAREN MINUS expression expression RPAREN .)
+    NUMBER          reduce using rule 2 (expression -> LPAREN MINUS expression expression RPAREN .)
+    NAME            reduce using rule 2 (expression -> LPAREN MINUS expression expression RPAREN .)
+    NIL             reduce using rule 2 (expression -> LPAREN MINUS expression expression RPAREN .)
+    RPAREN          reduce using rule 2 (expression -> LPAREN MINUS expression expression RPAREN .)
+
+
+state 61
+
+    (3) expression -> LPAREN TIMES expression expression RPAREN .
+
+    $end            reduce using rule 3 (expression -> LPAREN TIMES expression expression RPAREN .)
+    LPAREN          reduce using rule 3 (expression -> LPAREN TIMES expression expression RPAREN .)
+    NUMBER          reduce using rule 3 (expression -> LPAREN TIMES expression expression RPAREN .)
+    NAME            reduce using rule 3 (expression -> LPAREN TIMES expression expression RPAREN .)
+    NIL             reduce using rule 3 (expression -> LPAREN TIMES expression expression RPAREN .)
+    RPAREN          reduce using rule 3 (expression -> LPAREN TIMES expression expression RPAREN .)
+
+
+state 62
+
+    (4) expression -> LPAREN DIVIDE expression expression RPAREN .
+
+    $end            reduce using rule 4 (expression -> LPAREN DIVIDE expression expression RPAREN .)
+    LPAREN          reduce using rule 4 (expression -> LPAREN DIVIDE expression expression RPAREN .)
+    NUMBER          reduce using rule 4 (expression -> LPAREN DIVIDE expression expression RPAREN .)
+    NAME            reduce using rule 4 (expression -> LPAREN DIVIDE expression expression RPAREN .)
+    NIL             reduce using rule 4 (expression -> LPAREN DIVIDE expression expression RPAREN .)
+    RPAREN          reduce using rule 4 (expression -> LPAREN DIVIDE expression expression RPAREN .)
+
+
+state 63
+
+    (20) condition -> LPAREN LPAREN expression . expression RPAREN RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 70
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 64
+
+    (21) condition -> LPAREN expression expression . condition RPAREN
+    (20) condition -> . LPAREN LPAREN expression expression RPAREN RPAREN
+    (21) condition -> . LPAREN expression expression condition RPAREN
+
+    LPAREN          shift and go to state 29
+
+    condition                      shift and go to state 71
+
+state 65
+
+    (10) expression -> LPAREN EQ_Q expression expression RPAREN .
+
+    $end            reduce using rule 10 (expression -> LPAREN EQ_Q expression expression RPAREN .)
+    LPAREN          reduce using rule 10 (expression -> LPAREN EQ_Q expression expression RPAREN .)
+    NUMBER          reduce using rule 10 (expression -> LPAREN EQ_Q expression expression RPAREN .)
+    NAME            reduce using rule 10 (expression -> LPAREN EQ_Q expression expression RPAREN .)
+    NIL             reduce using rule 10 (expression -> LPAREN EQ_Q expression expression RPAREN .)
+    RPAREN          reduce using rule 10 (expression -> LPAREN EQ_Q expression expression RPAREN .)
+
+
+state 66
+
+    (18) expression -> LPAREN DEFINE NAME expression RPAREN .
+
+    $end            reduce using rule 18 (expression -> LPAREN DEFINE NAME expression RPAREN .)
+    LPAREN          reduce using rule 18 (expression -> LPAREN DEFINE NAME expression RPAREN .)
+    NUMBER          reduce using rule 18 (expression -> LPAREN DEFINE NAME expression RPAREN .)
+    NAME            reduce using rule 18 (expression -> LPAREN DEFINE NAME expression RPAREN .)
+    NIL             reduce using rule 18 (expression -> LPAREN DEFINE NAME expression RPAREN .)
+    RPAREN          reduce using rule 18 (expression -> LPAREN DEFINE NAME expression RPAREN .)
+
+
+state 67
+
+    (19) expression -> LPAREN LAMBDA LPAREN args RPAREN . expression RPAREN
+    (1) expression -> . LPAREN PLUS expression expression RPAREN
+    (2) expression -> . LPAREN MINUS expression expression RPAREN
+    (3) expression -> . LPAREN TIMES expression expression RPAREN
+    (4) expression -> . LPAREN DIVIDE expression expression RPAREN
+    (5) expression -> . LPAREN CDR pair RPAREN
+    (6) expression -> . LPAREN CDR quote RPAREN
+    (7) expression -> . LPAREN COND condition RPAREN
+    (8) expression -> . LPAREN CAR pair RPAREN
+    (9) expression -> . LPAREN CAR quote RPAREN
+    (10) expression -> . LPAREN EQ_Q expression expression RPAREN
+    (11) expression -> . LPAREN ATOM_Q expression RPAREN
+    (15) expression -> . quote
+    (16) expression -> . pair
+    (18) expression -> . LPAREN DEFINE NAME expression RPAREN
+    (19) expression -> . LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    (24) expression -> . item
+    (12) quote -> . LPAREN QUOTE quote_items RPAREN
+    (17) pair -> . LPAREN CONS expression expression RPAREN
+    (25) item -> . NUMBER
+    (26) item -> . NAME
+    (27) item -> . NIL
+
+    LPAREN          shift and go to state 2
+    NUMBER          shift and go to state 7
+    NAME            shift and go to state 5
+    NIL             shift and go to state 8
+
+    expression                     shift and go to state 72
+    pair                           shift and go to state 3
+    quote                          shift and go to state 4
+    item                           shift and go to state 6
+
+state 68
+
+    (22) args -> args NAME .
+
+    RPAREN          reduce using rule 22 (args -> args NAME .)
+    NAME            reduce using rule 22 (args -> args NAME .)
+
+
+state 69
+
+    (17) pair -> LPAREN CONS expression expression RPAREN .
+
+    $end            reduce using rule 17 (pair -> LPAREN CONS expression expression RPAREN .)
+    LPAREN          reduce using rule 17 (pair -> LPAREN CONS expression expression RPAREN .)
+    NUMBER          reduce using rule 17 (pair -> LPAREN CONS expression expression RPAREN .)
+    NAME            reduce using rule 17 (pair -> LPAREN CONS expression expression RPAREN .)
+    NIL             reduce using rule 17 (pair -> LPAREN CONS expression expression RPAREN .)
+    RPAREN          reduce using rule 17 (pair -> LPAREN CONS expression expression RPAREN .)
+
+
+state 70
+
+    (20) condition -> LPAREN LPAREN expression expression . RPAREN RPAREN
+
+    RPAREN          shift and go to state 73
+
+
+state 71
+
+    (21) condition -> LPAREN expression expression condition . RPAREN
+
+    RPAREN          shift and go to state 74
+
+
+state 72
+
+    (19) expression -> LPAREN LAMBDA LPAREN args RPAREN expression . RPAREN
+
+    RPAREN          shift and go to state 75
+
+
+state 73
+
+    (20) condition -> LPAREN LPAREN expression expression RPAREN . RPAREN
+
+    RPAREN          shift and go to state 76
+
+
+state 74
+
+    (21) condition -> LPAREN expression expression condition RPAREN .
+
+    RPAREN          reduce using rule 21 (condition -> LPAREN expression expression condition RPAREN .)
+
+
+state 75
+
+    (19) expression -> LPAREN LAMBDA LPAREN args RPAREN expression RPAREN .
+
+    $end            reduce using rule 19 (expression -> LPAREN LAMBDA LPAREN args RPAREN expression RPAREN .)
+    LPAREN          reduce using rule 19 (expression -> LPAREN LAMBDA LPAREN args RPAREN expression RPAREN .)
+    NUMBER          reduce using rule 19 (expression -> LPAREN LAMBDA LPAREN args RPAREN expression RPAREN .)
+    NAME            reduce using rule 19 (expression -> LPAREN LAMBDA LPAREN args RPAREN expression RPAREN .)
+    NIL             reduce using rule 19 (expression -> LPAREN LAMBDA LPAREN args RPAREN expression RPAREN .)
+    RPAREN          reduce using rule 19 (expression -> LPAREN LAMBDA LPAREN args RPAREN expression RPAREN .)
+
+
+state 76
+
+    (20) condition -> LPAREN LPAREN expression expression RPAREN RPAREN .
+
+    RPAREN          reduce using rule 20 (condition -> LPAREN LPAREN expression expression RPAREN RPAREN .)
+
