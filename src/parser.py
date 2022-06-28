@@ -1,6 +1,7 @@
 from ply.yacc import yacc
-from ast import Add, Car, Cdr, Cond, Cons, Div, Mul, Sub
-from lexer import tokens  # noqa
+from src.ast import Add, Car, Cdr, Cond, Cons, Div, Mul, Sub, Lambda, Define, Number, Nil, Name, Apply
+from src.lexer import tokens  # noqa
+
 
 # Write functions for each grammar rule which is
 # specified in the docstring.
@@ -12,8 +13,20 @@ def p_expression_bin_operate(p):
                | LPAREN DIV expression expression RPAREN
                | LPAREN EQ_Q expression expression RPAREN
     """
-    class_dict = {"ADD": Add, "SUB": Sub, "MUL": Mul, "DIV": Div}
-    p[0] = class_dict[p[2].type](p[3], p[4])
+    class_dict = {"+": Add, "-": Sub, "*": Mul, "/": Div}
+    p[0] = class_dict[p[2]](p[3], p[4])
+
+
+def p_expression_equal(p):
+    """
+    expression : lambda
+               | quote
+               | item
+               | pair
+               | apply
+               | define
+    """
+    p[0] = p[1]
 
 
 def p_expression_single_operate(p):
@@ -50,20 +63,6 @@ def p_quote_item(p):
     p[0] = Cons(p[1], Nil)
 
 
-def p_expression_quote(p):
-    """
-    expression : quote
-    """
-    p[0] = p[1]
-
-
-def p_expression_pair(p):
-    """
-    expression : pair
-    """
-    p[0] = p[1]
-
-
 def p_pair(p):
     """
     pair : LPAREN CONS expression expression RPAREN
@@ -71,18 +70,26 @@ def p_pair(p):
     p[0] = (p[2], p[3], p[4])
 
 
-def p_expression_define(p):
+def p_define(p):
     """
-    expression : LPAREN DEFINE NAME expression RPAREN
+    define : LPAREN DEFINE NAME expression RPAREN
     """
-    p[0] = ("define", p[3], p[4])
+    p[0] = Define(p[3], p[4])
 
 
-def p_expression_lambda(p):
+def p_lambda(p):
     """
-    expression : LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
+    lambda : LPAREN LAMBDA LPAREN args RPAREN expression RPAREN
     """
-    p[0] = ("lambda", p[4], p[6])
+    p[0] = Lambda(p[4], p[6])
+
+
+def p_apply(p):
+    """
+    apply : LPAREN lambda args RPAREN
+          | LPAREN NAME args RPAREN
+    """
+    p[0] = Apply(p[2], p[3])
 
 
 def p_condition_single(p):
@@ -102,44 +109,37 @@ def p_condition_multi(p):
 
 def p_args_multi(p):
     """
-    args : args NAME
+    args : args item
     """
     p[0] = p[1] + [p[2]]
 
 
 def p_args_single(p):
     """
-    args : NAME
+    args : item
     """
     p[0] = [p[1]]
-
-
-def p_expression_item(p):
-    """
-    expression : item
-    """
-    p[0] = p[1]
 
 
 def p_item_number(p):
     """
     item : NUMBER
     """
-    p[0] = ("number", p[1])
+    p[0] = Number(p[1])
 
 
 def p_item_name(p):
     """
     item : NAME
     """
-    p[0] = ("name", p[1])
+    p[0] = Name(p[1])
 
 
 def p_item_nil(p):
     """
     item : NIL
     """
-    p[0] = Nil
+    p[0] = Nil()
 
 
 def p_error(p):

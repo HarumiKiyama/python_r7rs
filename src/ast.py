@@ -102,7 +102,7 @@ class Lambda(Node):
     def apply(self, real_args):
         if len(real_args) != len(self.args):
             raise ValueError(f'arg list length not equal to parameter list')
-        local_table = {k: v for k, v in zip(self.args, real_args)}
+        local_table = {k.name: v.eval() for k, v in zip(self.args, real_args)}
         env_table.append_tmp(local_table)
         rv = self.body.eval()
         env_table.pop_tmp()
