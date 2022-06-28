@@ -13,10 +13,10 @@ reserved = {
 
 # All tokens must be named in advance.
 tokens = [
-    "PLUS",
-    "MINUS",
-    "TIMES",
-    "DIVIDE",
+    "ADD",
+    "SUB",
+    "MUL",
+    "DIV",
     "LPAREN",
     "RPAREN",
     "NAME",
@@ -29,10 +29,10 @@ tokens = [
 t_ignore = " \t"
 
 # Token matching rules are written as regexs
-t_PLUS = r"\+"
-t_MINUS = r"-"
-t_TIMES = r"\*"
-t_DIVIDE = r"/"
+t_ADD = r"\+"
+t_SUB = r"-"
+t_MUL = r"\*"
+t_DIV = r"/"
 t_LPAREN = r"\("
 t_RPAREN = r"\)"
 t_NIL = r"\'\(\)"
@@ -51,7 +51,6 @@ def t_NAME(t):
     r"[a-zA-Z_][a-zA-Z0-9_]*"
     t.type = reserved.get(t.value, "NAME")
     return t
-
 
 
 # Ignored token with an action associated with it
