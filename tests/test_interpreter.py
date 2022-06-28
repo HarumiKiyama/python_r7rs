@@ -1,6 +1,3 @@
-import logging
-
-
 def test_interpreter_operate(parser_stub):
     ast = parser_stub.parse('(+ 1 2)')
     t = ast.eval()

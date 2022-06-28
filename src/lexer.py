@@ -13,17 +13,17 @@ reserved = {
 
 # All tokens must be named in advance.
 tokens = [
-    "ADD",
-    "SUB",
-    "MUL",
-    "DIV",
-    "LPAREN",
-    "RPAREN",
-    "NAME",
-    "NUMBER",
-    "EQ_Q",
-    "ATOM_Q",
-] + list(reserved.values())
+             "ADD",
+             "SUB",
+             "MUL",
+             "DIV",
+             "LPAREN",
+             "RPAREN",
+             "NAME",
+             "NUMBER",
+             "EQ_Q",
+             "ATOM_Q",
+         ] + list(reserved.values())
 
 # Ignored characters
 t_ignore = " \t"
@@ -38,6 +38,7 @@ t_RPAREN = r"\)"
 t_NIL = r"\'\(\)"
 t_EQ_Q = r"eq?"
 t_ATOM_Q = r"atom?"
+
 
 # A function can be used if there is an associated action.
 # Write the matching regex in the docstring.
